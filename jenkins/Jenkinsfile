@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    parameters {
+          string(defaultValue: 'us-east-2', description: 'Enter the name of AWS Region', name: 'REGION')
+          string(defaultValue: '851058551533.dkr.ecr.us-east-2.amazonaws.com', description: 'Enter the ECR repo url', name: 'AWS_ECR_ACCOUNT_URL')
+          string(defaultValue: 'jenkins', description: 'Enter the name ECR repo', name: 'ECR_REPO')
+          string(defaultValue: 'latest', description: 'Enter the name ECR repo', name: 'IMAGE_TAG')
+    }
+    stages {
+        stage ('Build') {
+            steps {
+                sh "\$(aws ecr get-login --no-include-email --region ${params.REGION})"
+                sh  "cd jenkins/"
+                sh "docker build -t ${params.ECR_REPO} -f jenkins/images/Dockerfile . --no-cache"
+            }
+       } 
+        stage ('Push') {
+            steps {
+                sh "docker tag ${params.ECR_REPO}:${params.IMAGE_TAG} ${params.AWS_ECR_ACCOUNT_URL}/${params.ECR_REPO}:${params.IMAGE_TAG}"
+                sh "docker push ${params.AWS_ECR_ACCOUNT_URL}/${params.ECR_REPO}:${params.IMAGE_TAG}"
+            }
+       }
+    } 
+}

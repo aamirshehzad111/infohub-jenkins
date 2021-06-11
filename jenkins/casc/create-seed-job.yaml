@@ -1,0 +1,59 @@
+jobs:
+  - script: >
+      freeStyleJob('seed-job') {
+        triggers {
+          hudsonStartupTrigger {
+            quietPeriod("10")
+            runOnChoice("ON_CONNECT")
+            label("")
+            nodeParameterName('master')
+          }
+        }
+        if( !System.getenv('DOCKER_COMPOSE') ) {
+          scm {
+            git {
+              remote {
+                url('https://github.com/aamirshehzad111/infohub-jenkins.git')
+                credentials('githiub-token')
+              }
+              branches('master')
+            }
+          }
+        }
+        displayName('seed-job')
+        steps {
+          dsl {
+            external('jenkins/jobs/folder_view/*.groovy', 'jenkins/jobs/*.groovy')
+            removeAction('DELETE')
+            removeViewAction('DELETE')
+          }
+        }
+        publishers {
+          downstreamParameterized {
+            trigger('seed_sharedlib, set_jenkins_user_token') {
+              condition('SUCCESS')
+            }
+          }
+          groovyPostBuild('''
+          import jenkins.model.Jenkins
+          import hudson.security.ACL
+          import java.util.ArrayList
+          import hudson.model.*;
+          Jenkins.instance.doQuietDown()
+          Thread.start {
+            ACL.impersonate(ACL.SYSTEM)
+            Thread.sleep(1 * 30 * 1000)
+            def q = Jenkins.instance.queue
+            for (queued in Jenkins.instance.queue.items) {
+              println queued.task.name
+              if (queued.task.name == 'seed_sharedlib' || queued.task.name == 'set_jenkins_user_token'){
+                println 'do nothing'
+              }else{
+                q.cancel(queued.task)
+              }
+            }
+            Jenkins.instance.doCancelQuietDown()
+          }
+          ''', Behavior.DoNothing)
+        }
+      }

@@ -1,0 +1,14 @@
+{
+    "github": {
+        "oauthScopes": "read:org,user:email,repo",
+        "adminUserNames": "aamirshehzad111",
+        "organizationNames": "spartans111",
+        "useRepositoryPermissions": false,
+        "authenticatedUserReadPermission": false,
+        "authenticatedUserCreateJobPermission": false,
+        "allowGithubWebHookPermission": true,
+        "allowCcTrayPermission": false,
+        "allowAnonymousReadPermission": false,
+        "allowAnonymousJobStatusPermission": false
+    }
+}
