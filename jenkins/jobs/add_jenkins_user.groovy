@@ -44,28 +44,6 @@ def access = [
   builders: [],
   readers: []
 ]
-/*
-if (ADD_USER != ""){
-    File f = new File(AUTHZ_JSON_FILE)
-    def jsonSlurper = new JsonSlurper()
-    def jsonText = f.getText()
-  	json = jsonSlurper.parseText( jsonText )
-  	if (PERMISSION_GROUP == "admins"){
-        JsonOutput.prettyPrint(JsonOutput.toJson (json.admins << ADD_USER))
-        newJson = JsonOutput.prettyPrint(JsonOutput.toJson (json))
-        f.write(newJson)
-	}
-    else if (PERMISSION_GROUP == "builders"){
-        JsonOutput.prettyPrint(JsonOutput.toJson (json.builders << ADD_USER))
-        newJson = JsonOutput.prettyPrint(JsonOutput.toJson (json))
-        f.write(newJson)
-    }
-    else {
-        JsonOutput.prettyPrint(JsonOutput.toJson (json.readers << ADD_USER))
-        newJson = JsonOutput.prettyPrint(JsonOutput.toJson (json))
-        f.write(newJson)   
-    }
-} */
 
 if (AUTHZ_JSON_FILE != "")  {
   println "Get role authorizations from file ${AUTHZ_JSON_FILE}"
