@@ -32,7 +32,7 @@ git-parameter
 gradle
 groovy-postbuild
 job-dsl
-parameterized-trigger
+parameterized-trigger:2.37
 publish-over-ssh
 rebuild
 sidebar-link
