@@ -46,7 +46,6 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-co
 RUN chmod +x /usr/local/bin/docker-compose 
 RUN ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose 
 RUN pip3 install awscli==1.16.312
-RUN pip3 install ecs-deploy
 RUN wget "https://raw.githubusercontent.com/silinternational/ecs-deploy/develop/ecs-deploy" -O /usr/local/bin/ecs-deploy 
 RUN chmod +x /usr/local/bin/ecs-deploy 
 
