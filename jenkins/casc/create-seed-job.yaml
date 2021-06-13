@@ -30,7 +30,7 @@ jobs:
         }
         publishers {
           downstreamParameterized {
-            trigger('seed_sharedlib') {
+            trigger('common-jobs/seed_sharedlib, common-jobs/set_jenkins_user_token') {
               condition('SUCCESS')
             }
           }
