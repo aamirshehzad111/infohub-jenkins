@@ -1,4 +1,4 @@
-job('docker_clean_up') {
+job('common-jobs/docker_resources_clean_up') {
     triggers {
         cron('H 0 * * *')
     }

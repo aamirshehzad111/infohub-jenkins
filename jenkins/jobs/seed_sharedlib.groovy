@@ -1,5 +1,5 @@
 
-pipelineJob('seed_sharedlib') {
+pipelineJob('common-jobs/seed_sharedlib') {
 
     logRotator {
       numToKeep(10)

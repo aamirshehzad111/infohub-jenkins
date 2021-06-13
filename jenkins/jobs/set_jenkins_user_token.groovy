@@ -1,12 +1,12 @@
 
-pipelineJob('set_jenkins_user_token') {
+pipelineJob('common-jobs/set_jenkins_user_token') {
 
     logRotator {
       numToKeep(10)
     }
 
   parameters {
-      stringParam('USER_NAME', 'aamir-nclouds','Enter the name of user')
+      stringParam('USER_NAME', 'aamirshehzad111','Enter the name of user')
   }
 
     definition {

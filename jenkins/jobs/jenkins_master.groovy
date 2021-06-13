@@ -1,4 +1,4 @@
-def jobname = 'jenkins_master_build'
+def jobname = 'common-jobs/jenkins_master_build'
 pipelineJob(jobname) {
 
   logRotator {

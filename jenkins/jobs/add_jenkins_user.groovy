@@ -1,5 +1,5 @@
 
-pipelineJob('add_user_to_jenkins') {
+pipelineJob('common-jobs/user_management_to_jenkins') {
 
     logRotator {
       numToKeep(10)

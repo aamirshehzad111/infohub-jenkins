@@ -30,30 +30,9 @@ jobs:
         }
         publishers {
           downstreamParameterized {
-            trigger('seed_sharedlib, set_jenkins_user_token') {
+            trigger('common-jobs/seed_sharedlib, common-jobs/set_jenkins_user_token') {
               condition('SUCCESS')
             }
           }
-          groovyPostBuild('''
-          import jenkins.model.Jenkins
-          import hudson.security.ACL
-          import java.util.ArrayList
-          import hudson.model.*;
-          Jenkins.instance.doQuietDown()
-          Thread.start {
-            ACL.impersonate(ACL.SYSTEM)
-            Thread.sleep(1 * 30 * 1000)
-            def q = Jenkins.instance.queue
-            for (queued in Jenkins.instance.queue.items) {
-              println queued.task.name
-              if (queued.task.name == 'seed_sharedlib' || queued.task.name == 'set_jenkins_user_token'){
-                println 'do nothing'
-              }else{
-                q.cancel(queued.task)
-              }
-            }
-            Jenkins.instance.doCancelQuietDown()
-          }
-          ''', Behavior.DoNothing)
         }
       }
