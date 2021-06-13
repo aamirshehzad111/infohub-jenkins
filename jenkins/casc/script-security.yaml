@@ -240,3 +240,4 @@ security:
       - method com.amazonaws.services.secretsmanager.model.PutSecretValueRequest setSecretString java.lang.String
       - method com.amazonaws.services.secretsmanager.AWSSecretsManager putSecretValue com.amazonaws.services.secretsmanager.model.PutSecretValueRequest
       - field jenkins.security.apitoken.TokenUuidAndPlainValue plainValue
+      - new com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy
