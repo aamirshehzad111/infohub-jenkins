@@ -23,11 +23,11 @@ docker-workflow
 docker-plugin:1.2.0
 docker-java-api:3.1.5.2
 email-ext:2.68
-ghprb
+ghprb:1.42.1
 git:4.4.2
-github
-github-api
-github-branch-source
+github:1.32.0
+github-api:1.122
+github-branch-source:2.9.3
 git-parameter
 gradle
 groovy-postbuild
