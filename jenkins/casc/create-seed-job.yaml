@@ -30,9 +30,30 @@ jobs:
         }
         publishers {
           downstreamParameterized {
-            trigger('common-jobs/seed_sharedlib') {
+            trigger('seed_sharedlib') {
               condition('SUCCESS')
             }
           }
+          groovyPostBuild('''
+          import jenkins.model.Jenkins
+          import hudson.security.ACL
+          import java.util.ArrayList
+          import hudson.model.*;
+          Jenkins.instance.doQuietDown()
+          Thread.start {
+            ACL.impersonate(ACL.SYSTEM)
+            Thread.sleep(1 * 30 * 1000)
+            def q = Jenkins.instance.queue
+            for (queued in Jenkins.instance.queue.items) {
+              println queued.task.name
+              if (queued.task.name == 'seed_sharedlib'){
+                println 'do nothing'
+              }else{
+                q.cancel(queued.task)
+              }
+            }
+            Jenkins.instance.doCancelQuietDown()
+          }
+          ''', Behavior.DoNothing)
         }
       }
