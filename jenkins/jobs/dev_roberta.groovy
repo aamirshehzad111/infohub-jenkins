@@ -1,7 +1,7 @@
 multibranchPipelineJob('Dev/Roberta') {
     branchSources {
         github {
-            scanCredentialsId('githiub-token')
+            scanCredentialsId('aamirshehzad111')
             repository('roberta')
             repoOwner('spartans111')
             buildForkPRHead(false)

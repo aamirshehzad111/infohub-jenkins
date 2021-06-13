@@ -18,7 +18,7 @@ pipelineJob(jobname) {
         git {
           remote {
                 url('https://github.com/aamirshehzad111/infohub-jenkins.git')
-                credentials('githiub-token')
+                credentials('aamirshehzad111')
             }
             branches('${GIT_BRANCH_NAME}')
         }

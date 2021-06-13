@@ -2,7 +2,7 @@ multibranchPipelineJob('Dev/Insurance') {
     branchSources {
 
         github {
-            scanCredentialsId('githiub-token')
+            scanCredentialsId('aamirshehzad111')
             repository('insurance_backend')
             repoOwner('spartans111')
             buildForkPRHead(false)

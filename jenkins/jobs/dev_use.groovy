@@ -1,7 +1,7 @@
 multibranchPipelineJob('Dev/Use') {
     branchSources {
         github {
-            scanCredentialsId('githiub-token')
+            scanCredentialsId('aamirshehzad111')
             repository('use')
             repoOwner('spartans111')
             buildForkPRHead(false)

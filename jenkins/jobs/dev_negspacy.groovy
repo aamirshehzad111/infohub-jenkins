@@ -1,7 +1,7 @@
 multibranchPipelineJob('Dev/Negspacy') {
     branchSources {
         github {
-            scanCredentialsId('githiub-token')
+            scanCredentialsId('aamirshehzad111')
             repository('negspacy')
             repoOwner('spartans111')
             buildForkPRHead(false)

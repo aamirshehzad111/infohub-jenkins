@@ -21,7 +21,7 @@ node('master') {
   println "Get shared library configuration from file..."
   File f = new File("/usr/share/jenkins/ref/config/sharedlibs-local.json")
   if ( !System.getenv('DOCKER_COMPOSE') ) {
-    git branch: 'master', credentialsId: 'githiub-token', url: 'https://github.com/aamirshehzad111/infohub-jenkins.git'
+    git branch: 'master', credentialsId: 'aamirshehzad111', url: 'https://github.com/aamirshehzad111/infohub-jenkins.git'
     f = new File("$WORKSPACE/jenkins/config/sharedlibs.json")
   }
 

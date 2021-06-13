@@ -2,7 +2,7 @@
     "libs": [{
         "name": "seed_sharedlib",
         "remote": "https://github.com/aamirshehzad111/infohub-jenkins.git",
-        "credentialsId": "githiub-token",
+        "credentialsId": "aamirshehzad111",
         "version": "master"
     }]
 }
