@@ -1,20 +1,21 @@
-multibranchPipelineJob('Prod/Insurance') {
+multibranchPipelineJob('Dev/nginx-deployment') {
     branchSources {
         github {
             scanCredentialsId('aamirshehzad111')
-            repository('insurance_backend')
+            repository('nginx-deployment')
             repoOwner('spartans111')
             buildForkPRHead(false)
             buildForkPRMerge(false)
             buildOriginBranchWithPR(false)
-            buildOriginPRHead(false)
-            id('24b0e711-730f-494c-b3aa-34314bd73f3f')
-            includes('master')
+            buildOriginPRHead(true)
+            excludes('master')
+            id('afba5e57-e4ec-441e-8371-a265ba241fb7')
+            includes('*')
         }
     }
     configure {
         it / factory(class: "org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory") << {
-            scriptPath("pipelines/prod.groovy")
+            scriptPath("pipelines/dev.groovy")
         }     
     }
     orphanedItemStrategy {

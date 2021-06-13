@@ -1,8 +1,8 @@
-multibranchPipelineJob('Prod/Roberta') {
+multibranchPipelineJob('Prod/nginx-deployment') {
     branchSources {
         github {
             scanCredentialsId('aamirshehzad111')
-            repository('roberta')
+            repository('nginx-deployment')
             repoOwner('spartans111')
             buildForkPRHead(false)
             buildForkPRMerge(false)
